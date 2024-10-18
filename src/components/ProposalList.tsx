@@ -13,7 +13,10 @@ const ProposalList = ({ proposals }) => {
               <CardTitle>{proposal.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <Badge variant={proposal.status === 'approved' ? 'success' : 'secondary'}>
+              <Badge 
+                variant="secondary"
+                className={proposal.status === 'approved' ? 'bg-green-500 text-white' : ''}
+              >
                 {proposal.status}
               </Badge>
             </CardContent>
