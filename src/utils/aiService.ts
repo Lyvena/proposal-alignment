@@ -1,10 +1,18 @@
-// This is a mock AI service - in production, this would connect to a real AI API
+import { useAISettings } from '@/hooks/useAISettings';
+import { analyzeProposalWithAI } from './openai';
+
 export const analyzeProposal = async (proposal: {
   title: string;
   description: string;
   fundingAmount: number;
 }) => {
-  // Simulate API call
+  const { isEnabled } = useAISettings.getState();
+
+  if (isEnabled) {
+    return analyzeProposalWithAI(proposal);
+  }
+
+  // Fallback to mock data when AI is disabled
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   return {
